@@ -1,3 +1,9 @@
 #!/bin/bash
+source .cicd/files/ini_parser.sh
+process_ini_file "deployment.ini" > /dev/null
 
-psql --dbname cicd -f /opt/cicd/src/init.sql
+# Load Variables from INI ###################################################
+workspace=$default_workspace
+
+# Deployment Script Here ####################################################
+psql -f $workspace/src/init.sql
